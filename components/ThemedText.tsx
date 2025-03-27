@@ -1,3 +1,29 @@
+import React from 'react';
+import { Text, TextStyle, useColorScheme } from 'react-native';
+
+interface ThemedTextProps {
+  children: React.ReactNode;
+  style?: TextStyle | TextStyle[];
+}
+
+export function ThemedText({ children, style }: ThemedTextProps) {
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
+
+  return (
+    <Text
+      style={[
+        {
+          color: isDark ? '#FFFFFF' : '#000000',
+        },
+        style,
+      ]}
+    >
+      {children}
+    </Text>
+  );
+}
+
 import { Text, type TextProps, StyleSheet } from 'react-native';
 
 import { useThemeColor } from '@/hooks/useThemeColor';
